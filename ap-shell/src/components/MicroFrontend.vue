@@ -1,10 +1,9 @@
 <template>
-  <div>
-    <div>
-      <h1>App shell header</h1>
+  <div style="height: 100%;">
+    <div v-show="isLoading" class="loader" ref="module">
+      <img src="https://cdn.determine.com/matrix/shared-assets@1.4.0/loader.svg" alt="loading..."/>
     </div>
-    <div v-if="isLoading">Loading...</div>
-    <div v-show="!isLoading" ref="module"/>
+    <div id="appHost"/>
   </div>
 </template>
 
@@ -12,16 +11,20 @@
 
 export default {
   data: () => ({isLoading: true}),
+  watch: { '$route.name': 'init' },
 
   mounted() {
-    const routeProps = this.$route.matched[0].props.default;
-    this.createScriptFile(async () => {
-      const Component = await this.loadComponent(routeProps.mfName, `./${routeProps.mfName}`);
-      Component.default(this.$refs.module, routeProps.mfProps)
-      this.isLoading = false
-    })
+    this.init()
   },
   methods: {
+    init() {
+      const routeProps = this.$route.matched[0].props.default;
+      this.createScriptFile(async () => {
+        const Component = await this.loadComponent(routeProps.mfName, `./${routeProps.mfName}`);
+        Component.default(this.$refs.module.nextSibling, routeProps.mfProps)
+        this.isLoading = false
+      })
+    },
     async loadComponent(scope, module) {
       await __webpack_init_sharing__('default');
       const container = window[scope];
@@ -46,5 +49,23 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
+.loader {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  z-index: 99999;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+
+  img {
+    width: 40%;
+    max-width: 250px;
+  }
+}
 </style>
+

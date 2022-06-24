@@ -2,26 +2,18 @@ import Vue from 'vue'
 import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css'
 import initRouter from './router';
+import App from "@/components/App";
 
 Vue.use(Vuetify);
-const vuetify =  new Vuetify({
-    icons: {
-        iconfont: 'fa',
-        values: {
-            cancel: 'fas fa-ban',
-            menu: 'fas fa-e llipsis-v'
-        }
-    }
-})
+const vuetify = new Vuetify()
 
 class Entry extends Vue {
-    constructor () {
+    constructor() {
         super({
             vuetify,
             router: initRouter(),
-            render: h => h(`router-view`)
+            render: h => h(App)
         });
     }
 }
-
 new Entry().$mount("#app")

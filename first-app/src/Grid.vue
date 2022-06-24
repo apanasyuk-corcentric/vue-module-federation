@@ -1,13 +1,11 @@
 <template>
-  <div class="right-sidebar">
-    <div class="d-flex flex-column">
-      <v-btn @click="$router.push('/')"> Go to first page of micro frontend </v-btn>
-      <ag-grid-vue
-          style="width: 500px; height: 200px"
-          class="ag-theme-alpine"
-          :columnDefs="columnDefs"
-          :rowData="rowData"/>
-    </div>
+  <div class="right-sidebar v-application">
+    <v-btn class="primary mb-3" @click="$router.push('/')"> Go to first page of micro frontend </v-btn>
+    <ag-grid-vue
+        style="min-width: 100%; min-height: 94%"
+        class="ag-theme-alpine"
+        :columnDefs="columnDefs"
+        :rowData="rowData"/>
   </div>
 </template>
 
@@ -35,18 +33,8 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .right-sidebar{
-  background-color: #03efb942;
-  font-size: 18px;
-  font-weight: bold;
-  text-align: center;
-  height:100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.vue-logo{
-  height:100px;
+  background-color: white;
 }
 </style>

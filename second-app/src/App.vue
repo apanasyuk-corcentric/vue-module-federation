@@ -1,13 +1,11 @@
 <template>
-  <div class="right-sidebar">
-    <div class="d-flex flex-column">
-      <v-btn> {{ text }} </v-btn>
-      <ag-grid-vue
-          style="width: 500px; height: 200px"
-          class="ag-theme-alpine"
-          :columnDefs="columnDefs"
-          :rowData="rowData"/>
-    </div>
+  <div class="right-sidebar v-application">
+    <h4 class="error--text"> {{ text }} </h4>
+    <ag-grid-vue
+        style="min-width: 100%; min-height: 94%"
+        class="ag-theme-alpine"
+        :columnDefs="columnDefs"
+        :rowData="rowData"/>
   </div>
 </template>
 
@@ -35,14 +33,14 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .right-sidebar{
-  background-color: #03efb942;
   font-size: 18px;
   font-weight: bold;
   text-align: center;
   height:100%;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }

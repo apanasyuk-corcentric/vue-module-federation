@@ -1,8 +1,10 @@
 <template>
-  <div class="right-sidebar">
-    <div>{{ text }}</div>
-    <v-btn @click="$router.push('/grid')"> Go to second page of micro frontend </v-btn>
-  </div>
+  <v-card height="100%" class="v-application">
+    <div class="right-sidebar">
+      <div class="mb-3">{{ text }}</div>
+      <v-btn class="mb-3 primary" @click="$router.push('/grid')"> Go to second page of current micro frontend </v-btn>
+    </div>
+  </v-card>
 </template>
 
 <script>
@@ -22,8 +24,7 @@ export default {
   height:100%;
   display: flex;
   flex-direction: column;
-}
-.vue-logo{
-  height:100px;
+  justify-content: center;
+  align-items: center;
 }
 </style>
